@@ -6,7 +6,8 @@ import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import Face5Icon from "@mui/icons-material/Face5";
 import Typography from "@mui/material/Typography";
-import dianpic from "../dianpic.jpg";
+import dianpic from "../assets/dianpic.jpg";
+import developerpic from "../assets/itdeveloper.gif";
 
 import "../styles/ShowModal.css";
 
@@ -49,7 +50,7 @@ function ShowModal({
     return (
       <div>
         <Button onClick={handleOpen}>
-          <Face5Icon className="icon" />
+          <img src={developerpic} alt="aboutMe" className="showModal_Icon" />
         </Button>
         <Modal
           open={open}

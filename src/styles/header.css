@@ -10,15 +10,17 @@
   background-color: white;
   color:grey;
   border-radius:  30px;
-  padding: 10px;
+  padding: 5px;
   display:flex;
   align-items: center;
-  min-width: 100px;
+  min-width: 80px;
 }
 
 .header_Left > input {
   border:none;
-  width: 100%
+  width: 100%;
+  ;
+  
 }
 
 .header_Right {

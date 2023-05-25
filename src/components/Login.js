@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
-// import { loginUrl } from "../script/spotify.js";
+
 import "../styles/login.css";
 
 function Login() {
   const [loginUrl, setLoginUrl] = useState("");
+  const [errorSpotify, setErrorSpotify] = useState("");
 
   const spotifyUrl = process.env.REACT_APP_SPOTIFY_API;
-  //const spotifyUrl = "http://localhost:5000/spotify";
 
   useEffect(() => {
     async function fetchLoginUrl() {
-      const loginUrlStream = await fetch(spotifyUrl);
-
-      const loginUrlJson = await loginUrlStream.json();
-      setLoginUrl(loginUrlJson.loginUrl);
+      try {
+        const loginUrlStream = await fetch(spotifyUrl);
+        console.error("loginstream: ", loginUrlStream);
+        const loginUrlJson = await loginUrlStream.json();
+        setLoginUrl(loginUrlJson.loginUrl);
+      } catch (error) {
+        setErrorSpotify("something wrong");
+      }
     }
     fetchLoginUrl();
   }, [spotifyUrl]);
@@ -25,8 +29,11 @@ function Login() {
         alt="spotify logo"
       />
       <h1>CLONE</h1>
-      <a href={loginUrl}>LOGIN WITH SPOTIFY</a>
-      {/* login button */}
+      {errorSpotify === "" ? (
+        <a href={loginUrl}>LOGIN TO SPOTIFY</a>
+      ) : (
+        <h3>something wrong, cannot connect to back-end</h3>
+      )}
     </div>
   );
 }
